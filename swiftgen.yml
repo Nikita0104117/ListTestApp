@@ -1,0 +1,33 @@
+strings:
+  - inputs: ListApp/Resources/Localized/en.lproj/Localize.strings
+    outputs:
+      - templatePath: Templates/swiftgen_templates/strings/locale.stencil
+        output: ListApp/Resources/Generated/AppLocale.generated.swift
+        params:
+          enumName: AppLocale
+          publicAccess: true
+xcassets:
+  - inputs:
+    - ListApp/Resources/Assets.xcassets
+    outputs:
+      - templatePath: Templates/swiftgen_templates/assets.stencil
+        output: ListApp/Resources/Generated/AppAssets.generated.swift
+        params:
+          enumName: AppAssets
+          publicAccess: true
+  - inputs: ListApp/Resources/Colors.xcassets
+    outputs:
+      - templatePath: Templates/swiftgen_templates/assets.stencil
+        output: ListApp/Resources/Generated/AppColors.generated.swift
+        params:
+          enumName: AppColors
+          publicAccess: true
+fonts:
+  - inputs:
+    - ListApp/Resources/Fonts
+    outputs:
+      - templatePath: Templates/swiftgen_templates/fonts/swift5.stencil
+        output: ListApp/Resources/Generated/AppFonts.generated.swift
+        params:
+          enumName: AppFonts
+          publicAccess: true

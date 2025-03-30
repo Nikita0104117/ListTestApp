@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -e
+
+# Trap handlers
+trap 'echo "‼️ The script terminated with an error on line $LINENO. Error code: $?" >&2' ERR
+trap 'catch_exit $?' EXIT
+
+# Process exit
+catch_exit() {
+    if [ "$1" -eq 0 ]; then
+        echo "✅ Unarchiving of '$ARCHIVE' finished."
+    else
+        echo "‼️ The script terminated with an error. Error code: $1" >&2
+    fi
+}
+
+# Enter folder
+folderName=$(dirname $0)
+cd $folderName
+cd ..
+
+# Constants
+VERSION="v1.9"
+ARCHIVE="OpenVPNXor_"$VERSION".framework.zip"
+FRAMEWORK_FOLDER="OpenVPNXor_"$VERSION"_framework"
+
+# Check is file exists
+if [ ! -f "$ARCHIVE" ]; then
+    echo "‼️ ERROR: File '$ARCHIVE' not found!" >&2
+    exit 1
+fi
+
+# Create directory for .framework
+mkdir -p "$FRAMEWORK_FOLDER"
+
+# Check archive type, thus unarchive it
+case "$ARCHIVE" in
+    *.tar.gz|*.tgz) tar -xvzf "$ARCHIVE" ;;
+    *.tar.bz2|*.tbz2) tar -xvjf "$ARCHIVE" ;;
+    *.tar.xz|*.txz) tar -xvJf "$ARCHIVE" ;;
+    *.tar) tar -xvf "$ARCHIVE" ;;
+    *.zip) unzip -o "$ARCHIVE" -d "$FRAMEWORK_FOLDER" ;;
+    *.rar) unrar x "$ARCHIVE" ;;
+    *.7z) 7z x "$ARCHIVE" ;;
+    *) echo "‼️ ERROR: Unknown archive type '$ARCHIVE'" >&2; exit 1 ;;
+esac

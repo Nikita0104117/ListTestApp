@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24D60" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Beacon" representedClassName="Beacon" syncable="YES">
+        <attribute name="carrierId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="createdAt" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mac" attributeType="String"/>
+        <attribute name="major" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="minor" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="status" attributeType="String"/>
+        <attribute name="updatedAt" attributeType="String"/>
+        <attribute name="uuid" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="uuid"/>
+                <constraint value="major"/>
+                <constraint value="minor"/>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Bus" representedClassName="Bus" syncable="YES">
+        <attribute name="beaconId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="capacity" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="carrierId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="createdAt" attributeType="String"/>
+        <attribute name="descriptionValue" attributeType="String"/>
+        <attribute name="driverId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="model" attributeType="String"/>
+        <attribute name="plate" attributeType="String"/>
+        <attribute name="routeId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="status" attributeType="String"/>
+        <attribute name="tailNumber" attributeType="String"/>
+        <attribute name="updatedAt" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Card" representedClassName="Card" syncable="YES">
+        <attribute name="cardNumber" attributeType="String"/>
+        <attribute name="createdAt" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isDefault" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="updatedAt" attributeType="String"/>
+        <attribute name="userId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="paymentItem" maxCount="1" deletionRule="Nullify" destinationEntity="PaymentProviderItem"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Currency" representedClassName="Currency" syncable="YES">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isDefault" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isoCode" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="symbol" attributeType="String"/>
+    </entity>
+    <entity name="PaymentProviderItem" representedClassName="PaymentProviderItem" syncable="YES">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES">
+        <relationship name="beacon" maxCount="1" deletionRule="Nullify" destinationEntity="Beacon"/>
+        <relationship name="bus" maxCount="1" deletionRule="Nullify" destinationEntity="Bus"/>
+        <relationship name="product" maxCount="1" deletionRule="Nullify" destinationEntity="ProductItem"/>
+        <relationship name="route" maxCount="1" deletionRule="Nullify" destinationEntity="Route"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="route"/>
+                <constraint value="product"/>
+                <constraint value="bus"/>
+                <constraint value="beacon"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="ProductItem" representedClassName="ProductItem" syncable="YES">
+        <attribute name="createdAt" attributeType="String"/>
+        <attribute name="currencyId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="deletedAt" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="paymentType" attributeType="String"/>
+        <attribute name="price" attributeType="String"/>
+        <attribute name="updatedAt" attributeType="String"/>
+        <relationship name="currency" maxCount="1" deletionRule="Nullify" destinationEntity="Currency"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Route" representedClassName="Route" syncable="YES">
+        <attribute name="createdAt" attributeType="String"/>
+        <attribute name="distance" attributeType="String"/>
+        <attribute name="duration" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="endPoint" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="municipalityId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="productId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="routeNumber" attributeType="String"/>
+        <attribute name="startPoint" attributeType="String"/>
+        <attribute name="updatedAt" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Trip" representedClassName="Trip" syncable="YES">
+        <attribute name="createdAt" attributeType="String"/>
+        <attribute name="finishedAt" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="orderId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="price" attributeType="String"/>
+        <attribute name="productName" attributeType="String"/>
+        <attribute name="productType" attributeType="String"/>
+        <attribute name="routeEndPoint" attributeType="String"/>
+        <attribute name="routeName" attributeType="String"/>
+        <attribute name="routeStartPoint" attributeType="String"/>
+        <attribute name="status" attributeType="String"/>
+        <attribute name="ticketNumber" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalPrice" attributeType="String"/>
+        <attribute name="tripStatus" attributeType="String"/>
+        <attribute name="updatedAt" attributeType="String"/>
+        <relationship name="beacon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Beacon"/>
+        <relationship name="bus" maxCount="1" deletionRule="Nullify" destinationEntity="Bus"/>
+        <relationship name="currency" maxCount="1" deletionRule="Nullify" destinationEntity="Currency"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product"/>
+        <relationship name="route" maxCount="1" deletionRule="Nullify" destinationEntity="Route"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+</model>
