@@ -2,8 +2,21 @@
   "colors" : [
     {
       "color" : {
-        "platform" : "visionos",
-        "reference" : "darkTextColor"
+        "platform" : "osx",
+        "reference" : "textColor"
+      },
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "color" : {
+        "platform" : "osx",
+        "reference" : "textColor"
       },
       "idiom" : "universal"
     }
