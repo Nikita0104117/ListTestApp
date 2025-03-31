@@ -12,30 +12,30 @@
 
 import UIKit
 
-protocol ListScreenBusinessLogic
-{
-  func doSomething(request: ListScreen.Something.Request)
-}
+private typealias Module = ListScreenModule
 
-protocol ListScreenDataStore
-{
-  //var name: String { get set }
-}
+extension Module {
+    class Interactor: ListScreenBusinessLogic, ListScreenDataStoreLogic {
+        var presenter: ListScreenPresentationLogic?
+        var worker: ListScreenWorkerLogic?
 
-class ListScreenInteractor: ListScreenBusinessLogic, ListScreenDataStore
-{
-  var presenter: ListScreenPresentationLogic?
-  var worker: ListScreenWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: ListScreen.Something.Request)
-  {
-    worker = ListScreenWorker()
-    worker?.doSomeWork()
-    
-    let response = ListScreen.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+        var dataSource: [ResponseModels.CharacterModels.ResultModel] = []
+        var dataSourceCount: Int { dataSource.count }
+
+        func fetchData(_ isRefresh: Bool) {
+            Task { @MainActor [weak self, isRefresh] in
+                guard let self, let worker, let presenter else { return }
+
+                if isRefresh { self.dataSource.removeAll() }
+
+                let newData = await worker.fetchData(isRefresh)
+                self.dataSource.append(contentsOf: newData)
+                presenter.presentSomething(response: self.dataSource)
+            }
+        }
+
+        func getDataSourceItemInfo(for indexPath: IndexPath) -> ListScreenModule.Models.ViewModel? {
+            presenter?.getDataSourceItemInfo(by: indexPath.row)
+        }
+    }
 }

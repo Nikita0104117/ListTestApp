@@ -12,49 +12,26 @@
 
 import UIKit
 
-@objc protocol ListScreenRoutingLogic
-{
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-}
+private typealias Module = ListScreenModule
 
-protocol ListScreenDataPassing
-{
-  var dataStore: ListScreenDataStore? { get }
-}
+extension Module {
+    class Router: NSObject, ListScreenRoutingLogic {
+        weak var viewController: UIViewController?
+        var dataStore: ListScreenDataStoreLogic?
 
-class ListScreenRouter: NSObject, ListScreenRoutingLogic, ListScreenDataPassing
-{
-  weak var viewController: ListScreenViewController?
-  var dataStore: ListScreenDataStore?
-  
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+        private let detailScreenAssembly: DetailAssemblyProtocol
 
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: ListScreenViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: ListScreenDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+        init(detailScreenAssembly: DetailAssemblyProtocol) {
+            self.detailScreenAssembly = detailScreenAssembly
+        }
+
+        // MARK: Routing
+        func pushDetailScreen(with row: Int) {
+            guard let dataStore, let item = dataStore.dataSource[safe: row] else { return }
+
+            let detailViewController = detailScreenAssembly.assemble(with: item)
+
+            viewController?.navigationController?.pushViewController(detailViewController, animated: true)
+        }
+    }
 }

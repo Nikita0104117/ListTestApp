@@ -12,20 +12,32 @@
 
 import UIKit
 
-protocol ListScreenPresentationLogic
-{
-  func presentSomething(response: ListScreen.Something.Response)
-}
+private typealias Module = ListScreenModule
 
-class ListScreenPresenter: ListScreenPresentationLogic
-{
-  weak var viewController: ListScreenDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: ListScreen.Something.Response)
-  {
-    let viewModel = ListScreen.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+extension Module {
+    class Presenter: ListScreenPresentationLogic {
+        weak var viewController: ListScreenDisplayLogic?
+
+        var dataSource: [ListScreenModule.Models.ViewModel] = []
+        var dataSourceCount: Int { dataSource.count }
+
+        func presentSomething(response: [ResponseModels.CharacterModels.ResultModel]) {
+            let newData: [ListScreenModule.Models.ViewModel] = response.map {
+                .init(
+                    id: $0.id,
+                    name: $0.name,
+                    image: $0.image,
+                    status: $0.status
+                )
+            }
+            let difference = newData.difference(from: self.dataSource, by: { $0.id == $1.id })
+
+            self.dataSource = newData
+            viewController?.displaySomething(with: difference)
+        }
+
+        func getDataSourceItemInfo(by index: Int) -> ListScreenModule.Models.ViewModel? {
+            dataSource[safe: index]
+        }
+    }
 }

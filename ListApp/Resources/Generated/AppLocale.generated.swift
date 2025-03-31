@@ -25,8 +25,32 @@ public enum AppLocale {
 
     public static var currentLanguageCode: String { currentLocalize.code }
 
-    /// test
-    public static var test: String { AppLocale.tr("Localize", "test") }
+
+  public enum DetailScreen {
+      /// Detail Info
+      public static var title: String { AppLocale.tr("Localize", "DetailScreen.title") }
+    public enum Model {
+        /// Created
+        public static var created: String { AppLocale.tr("Localize", "DetailScreen.Model.created") }
+        /// Gender
+        public static var gender: String { AppLocale.tr("Localize", "DetailScreen.Model.gender") }
+        /// Location
+        public static var location: String { AppLocale.tr("Localize", "DetailScreen.Model.location") }
+        /// Origin
+        public static var origin: String { AppLocale.tr("Localize", "DetailScreen.Model.origin") }
+        /// Species
+        public static var species: String { AppLocale.tr("Localize", "DetailScreen.Model.species") }
+        /// Status
+        public static var status: String { AppLocale.tr("Localize", "DetailScreen.Model.status") }
+        /// Type
+        public static var type: String { AppLocale.tr("Localize", "DetailScreen.Model.type") }
+    }
+  }
+
+  public enum ListScreen {
+      /// List
+      public static var title: String { AppLocale.tr("Localize", "ListScreen.title") }
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name

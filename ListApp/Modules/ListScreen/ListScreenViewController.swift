@@ -11,79 +11,121 @@
 //
 
 import UIKit
+import SnapKit
+import Utility
+import Extensions
+import Kingfisher
 
-protocol ListScreenDisplayLogic: class
-{
-  func displaySomething(viewModel: ListScreen.Something.ViewModel)
+private typealias Module = ListScreenModule
+
+extension Module {
+    final class ViewController: BaseViewController, ListScreenDisplayLogic {
+        var interactor: ListScreenBusinessLogic?
+        var router: (NSObjectProtocol & ListScreenRoutingLogic)?
+
+        // MARK: - UIComponents
+        private lazy var refreshControler: UIRefreshControl = build {
+            $0.addTarget(self, action: #selector(tapRefresh), for: .valueChanged)
+        }
+
+        private lazy var tableView: UITableView = build(.init(frame: .zero, style: .insetGrouped)) {
+            $0.backgroundColor = AppColors.Bachground.common.color
+            $0.refreshControl = refreshControler
+            $0.dataSource = self
+            $0.delegate = self
+        }
+
+        // MARK: View lifecycle
+        override func viewDidLoad() {
+            super.viewDidLoad()
+
+            setupUI()
+            interactor?.fetchData(false)
+        }
+
+        func displaySomething(with difference: CollectionDifference<ListScreenModule.Models.ViewModel>) {
+            updateDataSource(tableView, with: difference)
+        }
+
+        @objc func tapRefresh() {
+            interactor?.fetchData(true)
+        }
+    }
 }
 
-class ListScreenViewController: UITableViewController, ListScreenDisplayLogic
-{
-  var interactor: ListScreenBusinessLogic?
-  var router: (NSObjectProtocol & ListScreenRoutingLogic & ListScreenDataPassing)?
+private extension Module.ViewController {
+    func setupUI() {
+        title = AppLocale.ListScreen.title
+        view.backgroundColor = AppColors.Bachground.common.color
 
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = ListScreenInteractor()
-    let presenter = ListScreenPresenter()
-    let router = ListScreenRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+        setupViews()
+        setupConsstraints()
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = ListScreen.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: ListScreen.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+
+    func setupViews() {
+        view.addSubviews(tableView)
+    }
+
+    func setupConsstraints() {
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+
+    func updateDataSource(_ tableView: UITableView, with difference: CollectionDifference<Module.Models.ViewModel>) {
+        refreshControler.endRefreshing()
+
+        tableView.performBatchUpdates {
+            difference.forEach {
+                switch $0 {
+                    case .remove(let offset, _, _):
+                        tableView.deleteRows(at: [.init(row: offset, section: .zero)], with: .automatic)
+                    case .insert(let offset, _, _):
+                        tableView.insertRows(at: [.init(row: offset, section: .zero)], with: .automatic)
+                }
+            }
+        }
+    }
+}
+
+// MARK: - ListScreenModule + UITableViewDataSource
+extension Module.ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        interactor?.dataSourceCount ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let item = interactor?.getDataSourceItemInfo(for: indexPath) else { return .init() }
+
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        cell.accessoryType = .disclosureIndicator
+        cell.textLabel?.text = item.name
+        cell.imageView?.kf.setImage(with: item.image.link, placeholder: AppAssets.Placeholder.avatarPlaceholder.image)
+        cell.detailTextLabel?.text = item.status
+
+        return cell
+    }
+}
+
+// MARK: - ListScreenModule + UITableViewDelegate
+extension Module.ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let router else { return }
+
+        router.pushDetailScreen(with: indexPath.item)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let tableViewHeight = scrollView.frame.size.height
+
+        if offsetY > contentHeight - tableViewHeight * 1.2 {
+            interactor?.fetchData(false)
+        }
+    }
 }

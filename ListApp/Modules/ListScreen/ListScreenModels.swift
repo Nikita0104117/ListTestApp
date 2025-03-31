@@ -11,21 +11,41 @@
 //
 
 import UIKit
+import Extensions
 
-enum ListScreen
-{
-  // MARK: Use cases
-  
-  enum Something
-  {
-    struct Request
-    {
+private typealias Module = ListScreenModule
+
+extension Module {
+    enum Models {
+        struct ViewModel: Identifiable {
+            let id: Int
+            let name: String
+            let image: String
+            let status: String
+        }
+
+        struct PageInfoModel {
+            let nextPage: Int
+
+            init(nexPageurl: String) {
+                let numberOfPage = nexPageurl.components(separatedBy: "page=").last.flatMap(Int.init) ?? 1
+
+                self.nextPage = numberOfPage
+            }
+        }
+
+        struct DetailInfoModel {
+            let id: Int
+            let name: String
+            let status: String
+            let species: String
+            let type: String
+            let gender: String
+            let origin: LinkedInfoModel
+            let location: LinkedInfoModel
+            let image: String
+            let url: String
+            let created: String
+        }
     }
-    struct Response
-    {
-    }
-    struct ViewModel
-    {
-    }
-  }
 }

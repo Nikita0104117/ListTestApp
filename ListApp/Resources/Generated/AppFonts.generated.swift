@@ -27,13 +27,7 @@ public enum AppFonts {
     public static let regular = FontConvertible(name: "Chivo-Regular", family: "Chivo", path: "Chivo-Regular.ttf")
     public static let all: [FontConvertible] = [bold, extraBold, regular]
   }
-  public enum ZonaPro {
-    public static let bold = FontConvertible(name: "ZonaPro-Bold", family: "Zona Pro", path: "ZonaPro-Bold.otf")
-    public static let regular = FontConvertible(name: "ZonaPro-Regular", family: "Zona Pro", path: "ZonaPro-Regular.ttf")
-    public static let thin = FontConvertible(name: "ZonaPro-Thin", family: "Zona Pro", path: "ZonaPro-Thin.otf")
-    public static let all: [FontConvertible] = [bold, regular, thin]
-  }
-  public static let allCustomFonts: [FontConvertible] = [Chivo.all, ZonaPro.all].flatMap { $0 }
+  public static let allCustomFonts: [FontConvertible] = [Chivo.all].flatMap { $0 }
   public static func registerAllCustomFonts() {
     allCustomFonts.forEach { $0.register() }
   }

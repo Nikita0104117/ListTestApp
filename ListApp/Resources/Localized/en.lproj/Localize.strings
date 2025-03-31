@@ -6,4 +6,12 @@
   
 */
 
-"test" = "test";
+"ListScreen.title" = "List";
+"DetailScreen.title" = "Detail Info";
+"DetailScreen.Model.status" = "Status";
+"DetailScreen.Model.species" = "Species";
+"DetailScreen.Model.type" = "Type";
+"DetailScreen.Model.gender" = "Gender";
+"DetailScreen.Model.origin" = "Origin";
+"DetailScreen.Model.location" = "Location";
+"DetailScreen.Model.created" = "Created";

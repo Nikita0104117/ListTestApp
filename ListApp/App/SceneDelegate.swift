@@ -10,12 +10,15 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
+    // MARK: - Dependencies
+    @Inject(\.listScreenAssembly) private var listScreenAssembly
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         window = UIWindow(windowScene: windowScene)
 
-        let navigationController = UINavigationController(rootViewController: ViewController())
+        let navigationController = BaseNavigationController(rootViewController: listScreenAssembly.assemble())
 
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

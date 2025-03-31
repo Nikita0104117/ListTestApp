@@ -24,6 +24,13 @@ public typealias AssetColorTypeAlias = ColorAsset.Color
 public enum AppColors {
     public enum AccentColor {
     }
+    public enum Bachground {
+        public static let common = ColorAsset(name: "Common")
+        public static let info = ColorAsset(name: "Info")
+    }
+    public enum Text {
+        public static let black = ColorAsset(name: "black")
+    }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
