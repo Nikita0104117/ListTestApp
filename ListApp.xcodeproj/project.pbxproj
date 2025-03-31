@@ -17,7 +17,6 @@
 		B42257CB2D9995EC00947D13 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = B42257CA2D9995EC00947D13 /* Storage */; };
 		B42257CE2D9996C300947D13 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B42257CD2D9996C300947D13 /* Networking */; };
 		B42257D12D999A2C00947D13 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B42257D02D999A2C00947D13 /* SnapKit */; };
-		B42257D42D999A6600947D13 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B42257D32D999A6600947D13 /* IQKeyboardManagerSwift */; };
 		B42257D72D999D2400947D13 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = B42257D62D999D2400947D13 /* Factory */; };
 		B42257DC2D99A21A00947D13 /* AppRestContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42257DB2D99A21700947D13 /* AppRestContainer.swift */; };
 		B42257E22D99A41B00947D13 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B42257E12D99A41B00947D13 /* Colors.xcassets */; };
@@ -121,6 +120,10 @@
 		B42258672D9A48CE00947D13 /* Style+Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Style+Stack.swift"; sourceTree = "<group>"; };
 		B42258692D9A7CD100947D13 /* NSManagedObjectContext+Extesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extesion.swift"; sourceTree = "<group>"; };
 		B422586B2D9A821D00947D13 /* NSManagedObject+Extesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extesion.swift"; sourceTree = "<group>"; };
+		B4646C522D9A945F00877A0E /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Extensions; path = Packages/Extensions; sourceTree = "<group>"; };
+		B4646C532D9A945F00877A0E /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Networking; path = Packages/Networking; sourceTree = "<group>"; };
+		B4646C542D9A945F00877A0E /* Storage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Storage; path = Packages/Storage; sourceTree = "<group>"; };
+		B4646C552D9A945F00877A0E /* Utility */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Utility; path = Packages/Utility; sourceTree = "<group>"; };
 		B479FE8C2D97086400E5F97C /* ListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -136,7 +139,6 @@
 				B42258372D9A1C2900947D13 /* Kingfisher in Frameworks */,
 				B42257C52D9994FF00947D13 /* Utility in Frameworks */,
 				B42257D12D999A2C00947D13 /* SnapKit in Frameworks */,
-				B42257D42D999A6600947D13 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +163,10 @@
 		B42257C12D99934700947D13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B4646C522D9A945F00877A0E /* Extensions */,
+				B4646C532D9A945F00877A0E /* Networking */,
+				B4646C542D9A945F00877A0E /* Storage */,
+				B4646C552D9A945F00877A0E /* Utility */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -434,7 +440,6 @@
 				B42257CA2D9995EC00947D13 /* Storage */,
 				B42257CD2D9996C300947D13 /* Networking */,
 				B42257D02D999A2C00947D13 /* SnapKit */,
-				B42257D32D999A6600947D13 /* IQKeyboardManagerSwift */,
 				B42257D62D999D2400947D13 /* Factory */,
 				B42258362D9A1C2900947D13 /* Kingfisher */,
 			);
@@ -467,12 +472,7 @@
 			mainGroup = B479FE832D97086300E5F97C;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				B42257C32D9994FF00947D13 /* XCLocalSwiftPackageReference "Packages/Utility" */,
-				B42257C62D99955B00947D13 /* XCLocalSwiftPackageReference "Packages/Extensions" */,
-				B42257C92D9995EC00947D13 /* XCLocalSwiftPackageReference "Packages/Storage" */,
-				B42257CC2D9996C300947D13 /* XCLocalSwiftPackageReference "Packages/Networking" */,
 				B42257CF2D999A2C00947D13 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				B42257D22D999A6600947D13 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				B42257D52D999D2400947D13 /* XCRemoteSwiftPackageReference "Factory" */,
 				B42258352D9A1C2900947D13 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
@@ -822,25 +822,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		B42257C32D9994FF00947D13 /* XCLocalSwiftPackageReference "Packages/Utility" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = Packages/Utility;
-		};
-		B42257C62D99955B00947D13 /* XCLocalSwiftPackageReference "Packages/Extensions" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = Packages/Extensions;
-		};
-		B42257C92D9995EC00947D13 /* XCLocalSwiftPackageReference "Packages/Storage" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = Packages/Storage;
-		};
-		B42257CC2D9996C300947D13 /* XCLocalSwiftPackageReference "Packages/Networking" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = Packages/Networking;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		B42257CF2D999A2C00947D13 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -848,14 +829,6 @@
 			requirement = {
 				kind = upToNextMinorVersion;
 				minimumVersion = 5.7.1;
-			};
-		};
-		B42257D22D999A6600947D13 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 8.0.1;
 			};
 		};
 		B42257D52D999D2400947D13 /* XCRemoteSwiftPackageReference "Factory" */ = {
@@ -897,11 +870,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B42257CF2D999A2C00947D13 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		B42257D32D999A6600947D13 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B42257D22D999A6600947D13 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
 		};
 		B42257D62D999D2400947D13 /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
