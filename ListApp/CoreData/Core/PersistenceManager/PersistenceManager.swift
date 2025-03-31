@@ -15,7 +15,7 @@ import CoreData
 public class PersistenceManager: PersistenceManagerProtocol {
     private enum Constants {
         static let folderName: String = "database"
-        static let table = "DatabaseTable"
+        static let table = "ListApp"
         static let databaseExtension: String = "sqlite"
         static let modelFileExtension: String = "momd"
         static let inMemoryStorePath = "/dev/null"
@@ -39,10 +39,10 @@ public class PersistenceManager: PersistenceManagerProtocol {
         }
 
         static public func databaseFileURL(database name: String) -> URL? {
-//            let bundle = Bundle.module
-//            let url = bundle.url(forResource: name, withExtension: Constants.modelFileExtension)
+            let bundle = Bundle.main
+            let url = bundle.url(forResource: name, withExtension: Constants.modelFileExtension)
 
-            return nil//url
+            return url
         }
 
         static public func storePath(inMemory: Bool) -> URL {
@@ -90,9 +90,9 @@ private extension PersistenceManager {
     func configureContainer(inMemory: Bool) {
         let storeURL = FileUtils.storePath(inMemory: inMemory)
         let description = NSPersistentStoreDescription(url: storeURL)
-
         description.shouldMigrateStoreAutomatically = true
         description.shouldInferMappingModelAutomatically = true
+
         container.persistentStoreDescriptions = [description]
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy

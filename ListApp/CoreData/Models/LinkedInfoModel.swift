@@ -34,3 +34,10 @@ public extension DatabaseModels {
 // MARK: - Identifiable
 extension DatabaseModels.LinkedInfo: Identifiable {
 }
+
+extension DatabaseModels.LinkedInfo {
+    func update(from dto: LinkedInfoModel) {
+        self.name = dto.name
+        self.url = dto.url
+    }
+}

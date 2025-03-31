@@ -9,8 +9,8 @@ import UIKit
 
 extension Style.Label {
     // MARK: - (textColor)(FontType)(FontSize)
-    static let commonBold24: ColoredLabel = .init(titleColor: AppColors.Text.black.color, font: Style.Font.bold24)
-    static let commonRegular12: ColoredLabel = .init(titleColor: AppColors.Text.black.color, font: Style.Font.regular12)
+    static let commonExtraBold24: ColoredLabel = .init(titleColor: AppColors.Text.blackText.color, font: Style.Font.extraBold24)
+    static let commonRegular16: ColoredLabel = .init(titleColor: AppColors.Text.blackText.color, font: Style.Font.regular16)
 }
 
 // MARK: - Label Applicable

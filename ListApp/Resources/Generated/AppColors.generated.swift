@@ -29,7 +29,7 @@ public enum AppColors {
         public static let info = ColorAsset(name: "Info")
     }
     public enum Text {
-        public static let black = ColorAsset(name: "black")
+        public static let blackText = ColorAsset(name: "blackText")
     }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

@@ -114,6 +114,8 @@ extension Module.ViewController: UITableViewDataSource {
 // MARK: - ListScreenModule + UITableViewDelegate
 extension Module.ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        defer { tableView.deselectRow(at: indexPath, animated: true) }
+
         guard let router else { return }
 
         router.pushDetailScreen(with: indexPath.item)
@@ -124,7 +126,7 @@ extension Module.ViewController: UITableViewDelegate {
         let contentHeight = scrollView.contentSize.height
         let tableViewHeight = scrollView.frame.size.height
 
-        if offsetY > contentHeight - tableViewHeight * 1.2 {
+        if offsetY > contentHeight - tableViewHeight * 1.1 {
             interactor?.fetchData(false)
         }
     }

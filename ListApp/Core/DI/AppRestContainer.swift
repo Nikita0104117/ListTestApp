@@ -25,6 +25,14 @@ extension Container {
         self { ConnectivityImpl() }
     }
 
+    var database: Factory<DatabaseProtocol> {
+        self { Database(persistanceManager: self.persistanceManager.resolve()) }
+    }
+
+    var persistanceManager: Factory<PersistenceManagerProtocol> {
+        self { PersistenceManager() }
+    }
+
     // MARK: - Targets
     var characterTarget: Factory<CharacterService> {
         self { RestCharacterService(restClient: self.restClient.resolve()) }

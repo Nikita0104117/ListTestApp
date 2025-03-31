@@ -55,8 +55,8 @@
 		B422584C2D9A34E300947D13 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422584B2D9A34E200947D13 /* PersistenceManager.swift */; };
 		B422584E2D9A34F300947D13 /* PersistenceManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422584D2D9A34F300947D13 /* PersistenceManagerProtocol.swift */; };
 		B42258532D9A352D00947D13 /* _DatabaseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42258522D9A352C00947D13 /* _DatabaseModels.swift */; };
-		B42258552D9A355000947D13 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42258542D9A355000947D13 /* Card.swift */; };
-		B42258572D9A356D00947D13 /* PaymentProviderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42258562D9A356C00947D13 /* PaymentProviderItem.swift */; };
+		B42258552D9A355000947D13 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42258542D9A355000947D13 /* ResultModel.swift */; };
+		B42258572D9A356D00947D13 /* LinkedInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42258562D9A356C00947D13 /* LinkedInfoModel.swift */; };
 		B422585F2D9A3A0A00947D13 /* DetailScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422585B2D9A3A0A00947D13 /* DetailScreenPresenter.swift */; };
 		B42258612D9A3A0A00947D13 /* DetailScreenModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422585A2D9A3A0A00947D13 /* DetailScreenModels.swift */; };
 		B42258622D9A3A0A00947D13 /* DetailScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42258592D9A3A0A00947D13 /* DetailScreenInteractor.swift */; };
@@ -64,6 +64,8 @@
 		B42258642D9A3A0A00947D13 /* DetailScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422585D2D9A3A0A00947D13 /* DetailScreenViewController.swift */; };
 		B42258662D9A3A5200947D13 /* DetailScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42258652D9A3A4A00947D13 /* DetailScreenAssembly.swift */; };
 		B42258682D9A48D500947D13 /* Style+Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42258672D9A48CE00947D13 /* Style+Stack.swift */; };
+		B422586A2D9A7CD200947D13 /* NSManagedObjectContext+Extesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42258692D9A7CD100947D13 /* NSManagedObjectContext+Extesion.swift */; };
+		B422586C2D9A822400947D13 /* NSManagedObject+Extesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422586B2D9A821D00947D13 /* NSManagedObject+Extesion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,8 +110,8 @@
 		B422584B2D9A34E200947D13 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		B422584D2D9A34F300947D13 /* PersistenceManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManagerProtocol.swift; sourceTree = "<group>"; };
 		B42258522D9A352C00947D13 /* _DatabaseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DatabaseModels.swift; sourceTree = "<group>"; };
-		B42258542D9A355000947D13 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		B42258562D9A356C00947D13 /* PaymentProviderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentProviderItem.swift; sourceTree = "<group>"; };
+		B42258542D9A355000947D13 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
+		B42258562D9A356C00947D13 /* LinkedInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedInfoModel.swift; sourceTree = "<group>"; };
 		B42258592D9A3A0A00947D13 /* DetailScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreenInteractor.swift; sourceTree = "<group>"; };
 		B422585A2D9A3A0A00947D13 /* DetailScreenModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreenModels.swift; sourceTree = "<group>"; };
 		B422585B2D9A3A0A00947D13 /* DetailScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreenPresenter.swift; sourceTree = "<group>"; };
@@ -117,6 +119,8 @@
 		B422585D2D9A3A0A00947D13 /* DetailScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreenViewController.swift; sourceTree = "<group>"; };
 		B42258652D9A3A4A00947D13 /* DetailScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreenAssembly.swift; sourceTree = "<group>"; };
 		B42258672D9A48CE00947D13 /* Style+Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Style+Stack.swift"; sourceTree = "<group>"; };
+		B42258692D9A7CD100947D13 /* NSManagedObjectContext+Extesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extesion.swift"; sourceTree = "<group>"; };
+		B422586B2D9A821D00947D13 /* NSManagedObject+Extesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extesion.swift"; sourceTree = "<group>"; };
 		B479FE8C2D97086400E5F97C /* ListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -358,6 +362,8 @@
 		B42258482D9A34BB00947D13 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				B422586B2D9A821D00947D13 /* NSManagedObject+Extesion.swift */,
+				B42258692D9A7CD100947D13 /* NSManagedObjectContext+Extesion.swift */,
 				B42258522D9A352C00947D13 /* _DatabaseModels.swift */,
 				B42258492D9A34D100947D13 /* DatabaseProtocol.swift */,
 				B42258452D9A348900947D13 /* Database.swift */,
@@ -368,8 +374,8 @@
 		B42258512D9A351E00947D13 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B42258562D9A356C00947D13 /* PaymentProviderItem.swift */,
-				B42258542D9A355000947D13 /* Card.swift */,
+				B42258562D9A356C00947D13 /* LinkedInfoModel.swift */,
+				B42258542D9A355000947D13 /* ResultModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -543,6 +549,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B422586C2D9A822400947D13 /* NSManagedObject+Extesion.swift in Sources */,
 				B42258462D9A348B00947D13 /* Database.swift in Sources */,
 				B42257AA2D998BFF00947D13 /* AppDelegate.swift in Sources */,
 				B42257AB2D998BFF00947D13 /* ListApp.xcdatamodeld in Sources */,
@@ -563,7 +570,7 @@
 				B422581F2D99D78700947D13 /* Style+Font.swift in Sources */,
 				B422581B2D99D23100947D13 /* BaseNavigationController.swift in Sources */,
 				B42257FE2D99B03E00947D13 /* AppLocale.generated.swift in Sources */,
-				B42258572D9A356D00947D13 /* PaymentProviderItem.swift in Sources */,
+				B42258572D9A356D00947D13 /* LinkedInfoModel.swift in Sources */,
 				B422584C2D9A34E300947D13 /* PersistenceManager.swift in Sources */,
 				B42258272D99F84D00947D13 /* RestClient.swift in Sources */,
 				B42258302D99F94D00947D13 /* CharacterService.swift in Sources */,
@@ -574,7 +581,8 @@
 				B422580D2D99B87F00947D13 /* ListScreenInteractor.swift in Sources */,
 				B422580E2D99B87F00947D13 /* ListScreenModels.swift in Sources */,
 				B422580F2D99B87F00947D13 /* ListScreenViewController.swift in Sources */,
-				B42258552D9A355000947D13 /* Card.swift in Sources */,
+				B42258552D9A355000947D13 /* ResultModel.swift in Sources */,
+				B422586A2D9A7CD200947D13 /* NSManagedObjectContext+Extesion.swift in Sources */,
 				B42258102D99B87F00947D13 /* ListScreenPresenter.swift in Sources */,
 				B42258222D99D90500947D13 /* Applicable.swift in Sources */,
 				B422582E2D99F92E00947D13 /* RestCharacterService.swift in Sources */,

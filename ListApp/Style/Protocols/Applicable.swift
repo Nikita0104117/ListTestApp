@@ -22,7 +22,7 @@ precedencegroup StylePrecedence {
 infix operator <~: StylePrecedence
 
 @discardableResult
-public func <~<T: Applicable>(object: T.Applicant, applicable: T) -> T.Applicant {
+public func <~ <T: Applicable>(object: T.Applicant, applicable: T) -> T.Applicant {
     applicable.apply(object)
     return object
 }

@@ -3,6 +3,11 @@
     <entity name="LinkedInfo" representedClassName="LinkedInfo" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Result" representedClassName="Result" syncable="YES">
         <attribute name="created" optional="YES" attributeType="String"/>

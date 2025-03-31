@@ -31,7 +31,7 @@ extension Module {
         private lazy var contentStackView: UIStackView = build {
             $0 <~ Style.Stack.defaultVerticalStack0
             $0.spacing = 24
-            $0.alignment = .center
+            $0.alignment = .fill
         }
 
         var infoStackView: UIStackView = build {
@@ -48,7 +48,7 @@ extension Module {
         }
 
         private lazy var titleLabel: UILabel = build {
-            $0 <~ Style.Label.commonBold24
+            $0 <~ Style.Label.commonExtraBold24
         }
 
         // MARK: View lifecycle
@@ -95,10 +95,6 @@ private extension Module.ViewController {
         contentStackView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(32)
         }
-
-        photoImageView.snp.makeConstraints {
-            $0.width.equalToSuperview().multipliedBy(0.5)
-        }
     }
 
     func setupInfo(with model: Module.Models.ViewModel) {
@@ -126,8 +122,8 @@ private extension Module.ViewController {
             $0.distribution = .equalSpacing
         }
 
-        let titleLabel: UILabel = .init() <~ Style.Label.commonRegular12
-        let detailLabel: UILabel = .init() <~ Style.Label.commonRegular12
+        let titleLabel: UILabel = .init() <~ Style.Label.commonRegular16
+        let detailLabel: UILabel = .init() <~ Style.Label.commonRegular16
 
         titleLabel.text = title
         detailLabel.text = detail

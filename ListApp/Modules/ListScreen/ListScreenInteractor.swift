@@ -29,6 +29,8 @@ extension Module {
                 if isRefresh { self.dataSource.removeAll() }
 
                 let newData = await worker.fetchData(isRefresh)
+                if let first = dataSource.first, newData.contains(where: { $0.id == first.id }) { return }
+
                 self.dataSource.append(contentsOf: newData)
                 presenter.presentSomething(response: self.dataSource)
             }

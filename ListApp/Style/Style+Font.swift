@@ -9,6 +9,6 @@ import UIKit
 
 extension Style.Font {
     // MARK: - (FontType)(FontSize)
-    static let bold24: UIFont = AppFonts.Chivo.bold.font(size: 24)
-    static let regular12: UIFont = AppFonts.Chivo.regular.font(size: 12)
+    static let extraBold24: UIFont = AppFonts.Chivo.extraBold.font(size: 24)
+    static let regular16: UIFont = AppFonts.Chivo.regular.font(size: 16)
 }

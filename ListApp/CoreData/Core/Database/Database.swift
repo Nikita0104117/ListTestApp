@@ -89,6 +89,6 @@ public class Database: DatabaseProtocol {
 // MARK: - Private Properties
 private extension Database {
     func saveContext() {
-//        _context.saveContext()
+        _context.saveContext()
     }
 }

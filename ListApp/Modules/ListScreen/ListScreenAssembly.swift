@@ -49,6 +49,8 @@ protocol ListScreenDataStoreLogic {
 extension Module {
     final class ListScreenAssembly: ModuleAssemblying {
         // MARK: - Injected Assemblies
+        @Inject(\.database) private var database
+        @Inject(\.connectivity) private var connectivity
         @Inject(\.characterTarget) private var characterTarget
         @Inject(\.detailScreenAssembly) private var detailScreenAssembly
 
@@ -57,7 +59,7 @@ extension Module {
             let viewController = Module.ViewController()
 
             let interactor = Module.Interactor()
-            let worker = Module.Worker(characterTarget: characterTarget)
+            let worker = Module.Worker(characterTarget: characterTarget, connectivity: connectivity, database: database)
             let presenter = Module.Presenter()
             let router = Module.Router(detailScreenAssembly: detailScreenAssembly)
 
